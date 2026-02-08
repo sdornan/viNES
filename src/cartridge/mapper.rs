@@ -53,9 +53,8 @@ impl Mapper for Mapper0 {
     }
 
     fn cpu_write(&mut self, addr: u16, val: u8) {
-        match addr {
-            0x6000..=0x7FFF => self.prg_ram[(addr - 0x6000) as usize] = val,
-            _ => {} // ROM is read-only
+        if let 0x6000..=0x7FFF = addr {
+            self.prg_ram[(addr - 0x6000) as usize] = val;
         }
     }
 

@@ -22,8 +22,8 @@ impl Ppu {
         let show_left = self.mask.contains(super::registers::PpuMask::SHOW_BG_LEFT);
 
         // Extract scroll position from V register (loopy scrolling)
-        let coarse_x_start = (self.v & 0x001F) as u16;
-        let coarse_y = ((self.v >> 5) & 0x001F) as u16;
+        let coarse_x_start = self.v & 0x001F;
+        let coarse_y = (self.v >> 5) & 0x001F;
         let fine_y = ((self.v >> 12) & 0x0007) as u8;
         let nt_select = (self.v >> 10) & 0x0003;
         let nt_base_x = nt_select & 1;    // horizontal nametable bit

@@ -26,6 +26,12 @@ pub struct Triangle {
     linear_reload: bool,
 }
 
+impl Default for Triangle {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Triangle {
     pub fn new() -> Self {
         Triangle {

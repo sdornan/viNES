@@ -14,6 +14,12 @@ pub struct Controller {
     shift_register: u8,
 }
 
+impl Default for Controller {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Controller {
     pub fn new() -> Self {
         Controller {

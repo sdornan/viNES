@@ -29,6 +29,12 @@ pub struct Noise {
     envelope_decay: u8,
 }
 
+impl Default for Noise {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Noise {
     pub fn new() -> Self {
         Noise {

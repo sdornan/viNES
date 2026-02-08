@@ -1,7 +1,8 @@
 [package]
-name = "nes-emu"
+name = "vines"
 version = "0.1.0"
 edition = "2021"
+default-run = "vines"
 
 [dependencies]
 sdl2 = "0.38"

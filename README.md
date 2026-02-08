@@ -9,6 +9,7 @@ A vibe coded NES emulator written in Rust.
 - **APU** — Audio Processing Unit with pulse, triangle, and noise channels
 - **Cartridge** — iNES ROM format parsing with Mapper 0 (NROM) support
 - **Input** — Keyboard-based controller input via SDL2
+- **Save States** — Save and load emulator state with a single keypress
 
 ## Building
 
@@ -33,3 +34,11 @@ cargo run --release -- <rom.nes>
 | Enter       | Start      |
 | Right Shift | Select     |
 | Arrow Keys  | D-Pad      |
+
+### Emulator
+
+| Key    | Action     |
+|--------|------------|
+| F5     | Save state |
+| F9     | Load state |
+| Escape | Quit       |

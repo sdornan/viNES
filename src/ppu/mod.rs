@@ -6,6 +6,7 @@ use registers::{PpuCtrl, PpuMask, PpuStatus};
 use frame::Frame;
 use crate::cartridge::Mirroring;
 
+#[derive(Clone)]
 pub struct Ppu {
     // CHR data (from cartridge, static for Mapper 0)
     pub chr_rom: Vec<u8>,

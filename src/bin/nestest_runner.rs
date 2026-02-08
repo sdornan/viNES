@@ -1,9 +1,9 @@
 use std::fs;
 use std::sync::Arc;
 use crossbeam::queue::ArrayQueue;
-use nes_emu::cartridge::Cartridge;
-use nes_emu::cpu::Cpu;
-use nes_emu::bus::Bus;
+use vines::cartridge::Cartridge;
+use vines::cpu::Cpu;
+use vines::bus::Bus;
 
 fn main() {
     let rom_data = fs::read("nestest.nes").expect("Could not read nestest.nes - place it in the project root");
@@ -15,7 +15,7 @@ fn main() {
 
     // nestest automated mode starts at $C000
     cpu.pc = 0xC000;
-    cpu.status = nes_emu::cpu::CpuFlags::from_bits_truncate(0x24);
+    cpu.status = vines::cpu::CpuFlags::from_bits_truncate(0x24);
     cpu.sp = 0xFD;
     cpu.cycles = 7;
 

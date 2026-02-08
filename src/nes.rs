@@ -5,6 +5,7 @@ use crate::bus::Bus;
 use crate::cartridge::Cartridge;
 use crate::cpu::Cpu;
 
+#[derive(Clone)]
 pub struct Nes {
     pub cpu: Cpu,
     pub bus: Bus,

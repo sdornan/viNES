@@ -2,8 +2,8 @@ use std::env;
 use std::fs;
 use std::process;
 
-use nes_emu::cartridge::Cartridge;
-use nes_emu::frontend;
+use vines::cartridge::Cartridge;
+use vines::frontend;
 
 fn main() {
     env_logger::init();

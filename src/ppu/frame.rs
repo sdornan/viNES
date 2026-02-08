@@ -1,6 +1,7 @@
 pub const WIDTH: usize = 256;
 pub const HEIGHT: usize = 240;
 
+#[derive(Clone)]
 pub struct Frame {
     pub data: [u8; WIDTH * HEIGHT * 3], // RGB888
 }

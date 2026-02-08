@@ -10,6 +10,7 @@ pub const LENGTH_TABLE: [u8; 32] = [
     12, 16, 24, 18, 48, 20, 96, 22, 192, 24, 72, 26, 16, 28, 32, 30,
 ];
 
+#[derive(Clone)]
 pub struct Pulse {
     pub enabled: bool,
     pub channel: u8, // 0 = pulse1, 1 = pulse2

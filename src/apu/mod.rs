@@ -12,6 +12,7 @@ const CPU_FREQ: f64 = 1_789_773.0;
 const SAMPLE_RATE: f64 = 44_100.0;
 const CYCLES_PER_SAMPLE: f64 = CPU_FREQ / SAMPLE_RATE;
 
+#[derive(Clone)]
 pub struct Apu {
     pub pulse1: Pulse,
     pub pulse2: Pulse,
@@ -29,7 +30,7 @@ pub struct Apu {
     cycle_fraction: f64,
 
     // Output buffer
-    sample_buffer: Arc<ArrayQueue<f32>>,
+    pub sample_buffer: Arc<ArrayQueue<f32>>,
 
     // Cycle parity (APU runs at half CPU rate for pulse/noise)
     odd_cycle: bool,

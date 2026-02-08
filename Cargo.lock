@@ -219,17 +219,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f8ca58f447f06ed17d5fc4043ce1b10dd205e060fb3ce5b979b8ed8e59ff3f79"
 
 [[package]]
-name = "nes-emu"
-version = "0.1.0"
-dependencies = [
- "bitflags 2.10.0",
- "crossbeam",
- "env_logger",
- "log",
- "sdl2",
-]
-
-[[package]]
 name = "once_cell_polyfill"
 version = "1.70.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -368,6 +357,17 @@ name = "version-compare"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "579a42fc0b8e0c63b76519a339be31bed574929511fa53c1a3acae26eb258f29"
+
+[[package]]
+name = "vines"
+version = "0.1.0"
+dependencies = [
+ "bitflags 2.10.0",
+ "crossbeam",
+ "env_logger",
+ "log",
+ "sdl2",
+]
 
 [[package]]
 name = "windows-link"

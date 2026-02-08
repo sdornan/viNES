@@ -7,6 +7,7 @@ use crate::cartridge::mapper::{Mapper, Mapper0};
 use crate::controller::Controller;
 use crate::ppu::Ppu;
 
+#[derive(Clone)]
 pub struct Bus {
     pub ram: [u8; 2048],
     pub ppu: Ppu,

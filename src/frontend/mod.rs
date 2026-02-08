@@ -46,7 +46,7 @@ pub fn run(cartridge: Cartridge) -> Result<(), String> {
 
     let mut next_frame_time = Instant::now();
     let frame_duration = Duration::from_nanos(NANOS_PER_FRAME);
-    let mut frame_count = 0u64;
+    let mut save_state: Option<Nes> = None;
 
     'running: loop {
         // Handle input — always pump events to keep macOS happy
@@ -60,8 +60,23 @@ pub fn run(cartridge: Cartridge) -> Result<(), String> {
                 Event::KeyDown {
                     keycode: Some(key), ..
                 } => {
-                    if let Some(button) = input::keycode_to_button(key) {
-                        nes.bus.controller1.buttons |= button;
+                    match key {
+                        Keycode::F5 => {
+                            save_state = Some(nes.clone());
+                            log::info!("State saved");
+                        }
+                        Keycode::F9 => {
+                            if let Some(ref state) = save_state {
+                                nes = state.clone();
+                                while nes.bus.apu.sample_buffer.pop().is_some() {}
+                                log::info!("State loaded");
+                            }
+                        }
+                        _ => {
+                            if let Some(button) = input::keycode_to_button(key) {
+                                nes.bus.controller1.buttons |= button;
+                            }
+                        }
                     }
                 }
                 Event::KeyUp {
@@ -79,19 +94,12 @@ pub fn run(cartridge: Cartridge) -> Result<(), String> {
         let now = Instant::now();
         if now >= next_frame_time {
             nes.step_frame();
-            frame_count += 1;
 
             texture
                 .update(None, &nes.bus.ppu.frame.data, 256 * 3)
                 .map_err(|e| e.to_string())?;
             canvas.copy(&texture, None, None)?;
             canvas.present();
-
-            if frame_count % 60 == 0 {
-                canvas.window_mut().set_title(
-                    &format!("NES Emulator — frame {}", frame_count)
-                ).map_err(|e| e.to_string())?;
-            }
 
             // Schedule next frame; skip ahead if we fell behind
             next_frame_time += frame_duration;

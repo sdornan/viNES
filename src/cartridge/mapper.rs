@@ -6,6 +6,13 @@ pub trait Mapper {
     fn chr_read(&self, addr: u16) -> u8;
     fn chr_write(&mut self, addr: u16, val: u8);
     fn mirroring(&self) -> Mirroring;
+    fn clone_box(&self) -> Box<dyn Mapper>;
+}
+
+impl Clone for Box<dyn Mapper> {
+    fn clone(&self) -> Self {
+        self.clone_box()
+    }
 }
 
 /// Mapper 0 (NROM): No bank switching.
@@ -63,6 +70,15 @@ impl Mapper for Mapper0 {
 
     fn mirroring(&self) -> Mirroring {
         self.mirroring
+    }
+
+    fn clone_box(&self) -> Box<dyn Mapper> {
+        Box::new(Mapper0 {
+            prg_rom: self.prg_rom.clone(),
+            chr: self.chr.clone(),
+            mirroring: self.mirroring,
+            prg_ram: self.prg_ram,
+        })
     }
 }
 

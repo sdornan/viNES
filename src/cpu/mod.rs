@@ -19,6 +19,7 @@ bitflags! {
     }
 }
 
+#[derive(Clone)]
 pub struct Cpu {
     pub a: u8,
     pub x: u8,
